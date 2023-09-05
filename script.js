@@ -37,52 +37,50 @@ function converterParaCalendarioDe13Meses(dia, mes, ano) {
         return 'Data digitada incorretamente';
     }
     if(dia == 29 && mes == 2 && !isBissexto){
-        return 'Esse ano não é bissexto'
+        return 'Esse ano não é bissexto';
     }
     if(mes.length == 1){
         mes = '0' + mes;
     }
     if(dia == 31 && mes == 12){
-        return 'Achronian (Dia do ano)'
+        console.log('Achronian (Dia do ano)');
+        return;
     }
     if(dia == 17 && mes == 6 && isBissexto){
-        return 'Dia bissexto'
+        console.log('Dia bissexto');
+        return;
     }
 
     // Calcula o enésimo dia do ano no calendário Gregoriano
-    let diaGregoriano = parseInt(dia)
+    let diaGregoriano = parseInt(dia);
     for(let i = 1; i < mes; i++){
         diaGregoriano = diaGregoriano + parseInt(diasMesGregoriano[i-1]);
     }
 
-    // Correções para caso o ano seja bissexto
-
     // Transforma para data do calendário fixo internacional
     let diaInternacional = diaGregoriano % 28
     if(diaInternacional === 0){
-        diaInternacional = '28'
+        diaInternacional = '28';
     }
-    let mesInternacional = (diaGregoriano) / 28
-    mesInternacional = Math.ceil(mesInternacional)
+    let mesInternacional = (diaGregoriano) / 28;
+    mesInternacional = Math.ceil(mesInternacional);
 
     // Correção para anos bissextos
     if(isBissexto && diaGregoriano > 17 && mesInternacional >= 7){
-        diaInternacional = diaInternacional - 1
+        diaInternacional = diaInternacional - 1;
         if(diaInternacional === 0){
-            diaInternacional = '28'
-            mesInternacional = mesInternacional - 1
+            diaInternacional = '28';
+            mesInternacional = mesInternacional - 1;
         }
     }
 
     // Formata os valores para imprimir a data no calendário fixo internacional
-
     let mesCalendarioFixoInternacional = mesesCalendarioFixoInternacional[mesInternacional - 1];
     if(diaInternacional.toString().length == 1){
         diaInternacional = '0'+ diaInternacional;
     }
 
-    
-    console.log(`No calendário fixo internacional hoje é dia: ${diaInternacional}/${mesCalendarioFixoInternacional}/${ano} ou ${diaInternacional}/${mesInternacional}/${ano}`)
+    console.log(`${diaInternacional}/${mesCalendarioFixoInternacional}/${ano} ou ${diaInternacional}/${mesInternacional}/${ano}`);
   }
 
 converterParaCalendarioDe13Meses(prompt('Digite o dia:'),prompt('Digite o mês:'),prompt('Digite o ano'));
