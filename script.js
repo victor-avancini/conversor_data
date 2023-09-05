@@ -34,20 +34,22 @@ function converterParaCalendarioDe13Meses(dia, mes, ano) {
         dia = '0'+ dia;
     }
     if(dia > 31 || mes > 12){
-        return 'Data digitada incorretamente';
+        alert('Data digitada incorretamente');
+        return;
     }
     if(dia == 29 && mes == 2 && !isBissexto){
-        return 'Esse ano não é bissexto';
+        alert(`${ano} não é um ano bissexto`);
+        return;
     }
     if(mes.length == 1){
         mes = '0' + mes;
     }
     if(dia == 31 && mes == 12){
-        console.log('Achronian (Dia do ano)');
+        alert('Achronian (Dia do ano)');
         return;
     }
     if(dia == 17 && mes == 6 && isBissexto){
-        console.log('Dia bissexto');
+        alert('Dia bissexto');
         return;
     }
 
@@ -80,6 +82,7 @@ function converterParaCalendarioDe13Meses(dia, mes, ano) {
         diaInternacional = '0'+ diaInternacional;
     }
 
+    alert(`A data Gregoriana corresponde no calendário fixo internacional ao dia: ${diaInternacional}/${mesCalendarioFixoInternacional}/${ano} ou ${diaInternacional}/${mesInternacional}/${ano}`)
     console.log(`${diaInternacional}/${mesCalendarioFixoInternacional}/${ano} ou ${diaInternacional}/${mesInternacional}/${ano}`);
   }
 
